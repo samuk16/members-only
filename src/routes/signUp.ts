@@ -1,9 +1,10 @@
 import { Router } from "express";
+import { getForm, postForm } from "../controllers/signUpController";
 
 const signUpRouter = Router();
 
-signUpRouter.get("/", (req, res) => {
-	res.render("pages/signUpForm");
-});
+signUpRouter.get("/", getForm);
+
+signUpRouter.post("/", ...postForm);
 
 export default signUpRouter;
