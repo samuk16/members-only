@@ -42,6 +42,9 @@ importers:
       '@types/bcryptjs':
         specifier: ^2.4.6
         version: 2.4.6
+      '@types/connect-pg-simple':
+        specifier: ^7.0.3
+        version: 7.0.3
       '@types/express':
         specifier: ^5.0.0
         version: 5.0.0
@@ -615,6 +618,9 @@ packages:
 
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
+
+  '@types/connect-pg-simple@7.0.3':
+    resolution: {integrity: sha512-NGCy9WBlW2bw+J/QlLnFZ9WjoGs6tMo3LAut6mY4kK+XHzue//lpNVpAvYRpIwM969vBRAM2Re0izUvV6kt+NA==}
 
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
@@ -1846,6 +1852,12 @@ snapshots:
     dependencies:
       '@types/connect': 3.4.38
       '@types/node': 22.10.2
+
+  '@types/connect-pg-simple@7.0.3':
+    dependencies:
+      '@types/express': 5.0.0
+      '@types/express-session': 1.18.1
+      '@types/pg': 8.11.10
 
   '@types/connect@3.4.38':
     dependencies:

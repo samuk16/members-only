@@ -2,30 +2,6 @@ import { Client } from "pg";
 import { argv } from "node:process";
 
 // const date = new Date();
-
-const SQL3 = `
-CREATE TABLE IF NOT EXISTS tags (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name_tag VARCHAR (25) UNIQUE
-);
-`;
-const SQL = `
-CREATE TABLE IF NOT EXISTS authors (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name_author VARCHAR (255) UNIQUE
-);
-`;
-const SQL2 = `
-CREATE TABLE IF NOT EXISTS manhwas (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  title VARCHAR (255) UNIQUE,
-  description VARCHAR(600),
-  caps INTEGER,
-  url_img VARCHAR(255),
-  author_id INTEGER REFERENCES authors,
-  password VARCHAR(255)
-);
-`;
 const SQL2T = `
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -47,13 +23,13 @@ text TEXT,
 added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
 `;
-const SQL4 = `
-CREATE TABLE IF NOT EXISTS manhwas_tags (
-   manhwa_id INTEGER REFERENCES manhwas(id) ON DELETE CASCADE,
-   tag_id INTEGER REFERENCES tags(id) ON DELETE CASCADE,
-   PRIMARY KEY (manhwa_id, tag_id)
-);
-`;
+
+const SQL3 = `
+CREATE TABLE IF NOT EXISTS sessions (
+  sid VARCHAR PRIMARY KEY,    
+  sess JSON NOT NULL,               
+  expire TIMESTAMP NOT NULL         
+);`;
 
 async function main() {
 	console.log("seeding...");

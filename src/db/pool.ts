@@ -1,8 +1,8 @@
 import pkg from "pg";
 const { Pool } = pkg;
 import dotenv from "dotenv";
-const dburl = process.env.CONNECTION_DB_URL;
 dotenv.config();
+const dburl = process.env.CONNECTION_DB_URL;
 
 export const pool = new Pool({
 	connectionString: dburl,
