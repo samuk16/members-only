@@ -10,6 +10,9 @@ import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import { pool } from "./db/pool";
 import type { Request, Response, NextFunction } from "express";
+import logInRouter from "./routes/logIn";
+import { log } from "node:console";
+import logOutRouter from "./routes/logOut";
 const app = express();
 dotenv.config();
 
@@ -41,13 +44,22 @@ app.get("/", (req, res) => {
 });
 
 app.use("/sign-up", signUpRouter);
-
+app.use("/log-in", logInRouter);
+app.use("/log-out", logOutRouter);
+app.get("/protected-route", (req, res) => {
+	if (req.isAuthenticated()) {
+		res.render("pages/test");
+	} else {
+		res.render("pages/test2");
+	}
+});
 interface CustomError extends Error {
 	status?: number;
 }
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-	res.status(500).render("pages/error", { error: err.message });
+	console.log(err);
+	res.status(500).render("pages/error", { error: err });
 });
 
 const PORT = process.env.PORT || 3000;
