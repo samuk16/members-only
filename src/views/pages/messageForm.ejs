@@ -1,0 +1,33 @@
+<%- include("../partials/head") %>
+    <main>
+        <div class="form-container">
+            <div>
+                <ul>
+                    <% if (locals.errors) { %>
+                        <% locals.errors.forEach((error)=> { %>
+                            <li>
+                                <%= error.msg %>
+                            </li>
+                            <%})%>
+                                <%} %>
+                </ul>
+            </div>
+            <div>
+                <h1 class="error-message">testssfsf</h1>
+            </div>
+            <form action="/create-message" method="POST">
+                <h1>New Message</h1>
+                <div class="form-group">
+
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" rows="5"></textarea>
+                    <!-- <input type="text" id="message" placeholder="message" name="message"> -->
+
+                </div>
+
+
+                <button type="submit">Create Message</button>
+            </form>
+        </div>
+    </main>
+    <%- include("../partials/footer"); %>

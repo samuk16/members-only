@@ -7,12 +7,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import passport from "../src/config/passportjs";
 import session from "express-session";
+import type { Session } from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import { pool } from "./db/pool";
 import type { Request, Response, NextFunction } from "express";
 import logInRouter from "./routes/logIn";
-import { log } from "node:console";
 import logOutRouter from "./routes/logOut";
+import messageRouter from "./routes/message";
+import { isAuth } from "./middlewares/auth";
 const app = express();
 dotenv.config();
 
@@ -35,31 +37,46 @@ app.use(
 app.use(passport.session());
 
 app.use((req, res, next) => {
+	res.locals.currentUser = req.user;
+	next();
+});
+interface CustomSession extends Session {
+	passport: {
+		user: number;
+	};
+}
+
+app.use((req, res, next) => {
 	console.log(req.session);
+	console.log((req.session as CustomSession).passport);
 	next();
 });
 
 app.get("/", (req, res) => {
-	res.render("pages/index");
+	res.render("pages/index", { user: req.user });
 });
 
 app.use("/sign-up", signUpRouter);
 app.use("/log-in", logInRouter);
 app.use("/log-out", logOutRouter);
-app.get("/protected-route", (req, res) => {
+app.get("/protected-route", isAuth, (req, res) => {
 	if (req.isAuthenticated()) {
 		res.render("pages/test");
 	} else {
 		res.render("pages/test2");
 	}
 });
+app.use("/create-message", messageRouter);
+
 interface CustomError extends Error {
 	status?: number;
 }
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
 	console.log(err);
-	res.status(500).render("pages/error", { error: err });
+	res
+		.status(err.status || 500)
+		.render("pages/error", { error: err.message, status: err.status || 500 });
 });
 
 const PORT = process.env.PORT || 3000;

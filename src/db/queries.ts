@@ -15,3 +15,11 @@ export async function postUser(
 	);
 	return rows;
 }
+
+export async function postMessage(user_id: number, text: string, added: Date) {
+	const { rows } = await pool.query(
+		"INSERT INTO records (user_id, text ,added) VALUES ($1, $2, $3)",
+		[user_id, text, added],
+	);
+	return rows;
+}
