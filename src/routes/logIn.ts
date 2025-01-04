@@ -6,8 +6,9 @@ const logInRouter = Router();
 logInRouter.get("/", getLogin);
 logInRouter.post(
 	"/",
+	...postLogin,
 	passport.authenticate("local", {
-		successRedirect: "/protected-route",
+		successRedirect: "/",
 		failureRedirect: "/",
 	}),
 );

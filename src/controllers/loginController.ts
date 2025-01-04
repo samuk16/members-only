@@ -14,9 +14,6 @@ export const postLogin = [
 			if (!errors.isEmpty()) {
 				return res.render("pages/loginForm", { errors: errors.array() });
 			}
-			// const { username, password } = req.body;
-			// console.log({ username, password });
-			// res.redirect("/");
 			next();
 		} catch (err) {
 			next(err);

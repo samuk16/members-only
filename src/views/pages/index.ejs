@@ -1,6 +1,18 @@
 <%- include("../partials/head") %>
     <%- include("../partials/nav"); %>
         <main>
+            <div>
+                <ul>
+                    <% if (locals.errors) { %>
+                        <h1 class="error-message">
+                            <%= locals.errors %>
+                        </h1>
+                        <%} %>
+                </ul>
+            </div>
             <h1>Mermbers Only</h1>
+            <% if(locals.currentUser) { %>
+                <a class="btn btn-primary" href="/create-message">Create Message</a>
+                <% } %>
         </main>
         <%- include("../partials/footer"); %>
