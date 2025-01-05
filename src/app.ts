@@ -15,6 +15,7 @@ import logInRouter from "./routes/logIn";
 import logOutRouter from "./routes/logOut";
 import messageRouter from "./routes/message";
 import { isAuth } from "./middlewares/auth";
+import indexRouter from "./routes";
 const app = express();
 dotenv.config();
 
@@ -52,9 +53,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.get("/", (req, res) => {
-	res.render("pages/index", { user: req.user });
-});
+app.get("/", indexRouter);
 
 app.use("/sign-up", signUpRouter);
 app.use("/log-in", logInRouter);

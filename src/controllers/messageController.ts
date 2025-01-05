@@ -25,6 +25,7 @@ export const postMessageF = [
 			}
 			await postMessage(
 				(req.session as CustomSession).passport.user,
+				req.body.title,
 				req.body.message,
 				new Date(),
 			);

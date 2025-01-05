@@ -16,10 +16,22 @@ export async function postUser(
 	return rows;
 }
 
-export async function postMessage(user_id: number, text: string, added: Date) {
+export async function postMessage(
+	user_id: number,
+	title: string,
+	text: string,
+	added: Date,
+) {
 	const { rows } = await pool.query(
-		"INSERT INTO records (user_id, text ,added) VALUES ($1, $2, $3)",
-		[user_id, text, added],
+		"INSERT INTO records (user_id,title, text ,added) VALUES ($1, $2, $3,$4)",
+		[user_id, title, text, added],
+	);
+	return rows;
+}
+
+export async function getMessages() {
+	const { rows } = await pool.query(
+		"SELECT users.username,users.admin,users.member,records.* FROM records JOIN users ON records.user_id = users.id",
 	);
 	return rows;
 }
