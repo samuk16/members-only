@@ -17,7 +17,7 @@
                 <% locals.messages.forEach((message)=> { %>
                     <div class="message-card">
                         <p class="message-user">
-                            <%= message.member ? message.username : "******" %>
+                            <%= locals.currentUser.member ? message.username : "******" %>
                         </p>
                         <h2 class="message-title">
                             <%= message.title %>
@@ -26,7 +26,7 @@
                             <%= message.text %>
                         </p>
                         <p class="message-date">
-                            <%= message.member ? message.added.toLocaleString('en-US') : '******' %>
+                            <%= locals.currentUser.member ? message.added.toLocaleString('en-US') : '******' %>
                         </p>
                     </div>
 

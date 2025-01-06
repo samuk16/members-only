@@ -1,4 +1,3 @@
-import dotenv from "dotenv";
 import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -17,8 +16,9 @@ import messageRouter from "./routes/message";
 import { isAuth } from "./middlewares/auth";
 import indexRouter from "./routes";
 import profileRouter from "./routes/profile";
+import memberRouter from "./routes/member";
+import { SESSION_SECRET, PORT } from "../src/config/config";
 const app = express();
-dotenv.config();
 
 const pgSession = connectPgSimple(session);
 
@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
 	session({
-		secret: process.env.SESSION_SECRET || "secret",
+		secret: SESSION_SECRET || "secret",
 		resave: false,
 		saveUninitialized: false,
 		store: new pgSession({ pool: pool, tableName: "sessions" }),
@@ -50,7 +50,8 @@ interface CustomSession extends Session {
 
 app.use((req, res, next) => {
 	console.log(req.session);
-	console.log((req.session as CustomSession).passport);
+	// console.log((req.session as CustomSession).passport);
+	// console.log((req.session as CustomSession).passport.user);
 	next();
 });
 
@@ -68,7 +69,7 @@ app.get("/protected-route", isAuth, (req, res) => {
 });
 app.use("/create-message", messageRouter);
 app.use("/profile", profileRouter);
-
+app.use("/member", memberRouter);
 interface CustomError extends Error {
 	status?: number;
 }
@@ -80,7 +81,7 @@ app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
 		.render("pages/error", { error: err.message, status: err.status || 500 });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+// const PORT = PORT || 3000;
+app.listen(PORT || 3000, () => {
 	console.log(`Server running on port ${PORT}`);
 });

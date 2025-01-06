@@ -1,25 +1,4 @@
 <header>
-    <!-- <nav>
-        <ul>
-            <li>
-                <h1>Mermbers Only</h1>
-            </li>
-            <li><a href="/sign-up">Sign Up</a></li>
-            <% if (!locals.currentUser) { %>
-                <li><a href="/log-in">Log In</a></li>
-                <% } %>
-
-                    <% if (locals.currentUser) { %>
-                        <li>
-                            <form action="/log-out" method="POST" style="display: inline;">
-                                <button class="logoutBtn" type="submit">Logout</button>
-                            </form>
-                        </li>
-                        <% } %>
-                            <li><a href="/profile" class="btn btn-secondary">Profile</a></li>
-        </ul>
-    </nav> -->
-
     <nav class="navProfile">
         <h1>
             <a class="link" href="/">Members Only</a>
@@ -31,9 +10,13 @@
                 <a href="/create-message" class="btn btn-primary">Create Message</a>
 
                 <div class=" container-badges">
-                    <div class="<%= locals.currentUser.member ? " badge badge-member" : "badge badge-member-inactive" %>
-                        ">Member
-                    </div>
+                    <a href="/member">
+                        <div class="<%= locals.currentUser.member ? " badge badge-member"
+                            : "badge badge-member-inactive" %>
+                            ">Member
+                        </div>
+                    </a>
+
                     <div class="<%= locals.currentUser.admin ? " badge badge-admin" : "badge badge-admin-inactive" %>
                         ">Admin
                     </div>
