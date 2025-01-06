@@ -16,6 +16,7 @@ import logOutRouter from "./routes/logOut";
 import messageRouter from "./routes/message";
 import { isAuth } from "./middlewares/auth";
 import indexRouter from "./routes";
+import profileRouter from "./routes/profile";
 const app = express();
 dotenv.config();
 
@@ -66,6 +67,7 @@ app.get("/protected-route", isAuth, (req, res) => {
 	}
 });
 app.use("/create-message", messageRouter);
+app.use("/profile", profileRouter);
 
 interface CustomError extends Error {
 	status?: number;

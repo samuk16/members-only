@@ -22,6 +22,9 @@ body {
   color: var(--foreground);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
+  display:flex;
+  flex-direction:column;
+  height:100vh;
 }
 
 /* Container */
@@ -38,21 +41,18 @@ nav {
   margin-bottom: 2rem;
 }
 
-nav a {
+ a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.link {
   color: var(--foreground);
   text-decoration: none;
   margin-right: 1.5rem;
   font-size: 0.9rem;
   transition: color 0.2s ease;
 }
-a {
-  color: var(--foreground);
-  text-decoration: none;
-  margin-right: 1.5rem;
-  font-size: 0.9rem;
-  transition: color 0.2s ease;
-}
-nav a:hover {
+.link:hover {
   color: var(--accent);
 }
 /* a:hover {
@@ -123,7 +123,7 @@ button:hover {
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 5px;
-  padding: 1.5rem;
+  padding: 1rem;
   transition: transform 0.2s ease;
 }
 
@@ -200,8 +200,8 @@ button:hover {
   border-radius: 5px;
   transition: all 0.2s ease;
   cursor: pointer;
-  height: 2.5rem;
-  min-width: 2.5rem;
+  height: 2.2rem;
+  min-width: 2.2rem;
 }
 
 /* Primary button */
@@ -213,6 +213,7 @@ button:hover {
 
 .btn-primary:hover {
   opacity: 0.9;
+  color:var(--background);
 }
 
 /* Secondary button */
@@ -224,11 +225,135 @@ button:hover {
 
 .btn-secondary:hover {
   border-color: var(--foreground);
+  
 }
 
 /* Ghost button */
 .btn-ghost {
   background: transparent;
   color: var(--foreground);
-  border: none;
+  border: 1px solid var(--background);
+}
+
+.btn-ghost:hover{
+  border: 1px solid var(--border);
+}
+
+.container-profile{
+  display:flex;
+  flex-direction:column;
+  /* justify-content:center; */
+  align-items:center;
+  flex:1;
+  padding:0 20px;
+  
+
+}
+
+.profile{
+  border: 1px solid var(--border);
+  border-radius:10px;
+  padding:10px;
+  min-width:1000px;
+  max-width:1000px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background-color:#0a0a0a;
+}
+
+.messages{
+  width:100%;
+}
+
+.message-header{
+  border-bottom:1px solid var(--border);
+}
+
+
+.badge {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.25rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Admin badges */
+.badge-admin {
+    background-color: #fff;
+    color: #000;
+}
+
+.badge-admin-inactive {
+    background-color: #111;
+    color: #444;
+    border: 1px solid #222;
+}
+
+/* Member badges */
+.badge-member {
+    background-color: #fff;
+    color: #000;
+    /* border: 1px solid #333; */
+}
+
+.badge-member-inactive {
+    background-color: #111;
+    color: #444;
+    border: 1px solid #222;
+}
+
+/* Dot variants */
+.badge-with-dot {
+    gap: 0.375rem;
+}
+
+.badge-with-dot::before {
+    content: '';
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+
+.navProfile{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-left:20px;
+  padding-right:20px;
+}
+
+.navProfile > h1 {
+  margin-right:10px;
+}
+
+.container-badges{
+  display:flex;
+  gap:10px;
+}
+
+.container-mini-profile{
+  display:flex;
+  align-items:baseline;
+  gap:20px;
+}
+
+main{
+  flex:1;
+}
+
+footer{
+  display:flex;
+  justify-content:center;
+}
+
+p{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
 }

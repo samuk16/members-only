@@ -1,0 +1,51 @@
+<%- include("../partials/head") %>
+
+    <%- include("../partials/nav"); %>
+        <main class="container-profile">
+
+            <!-- <div class="profile">
+
+            <div>
+                <h1>
+                    <%= locals.currentUser.first_name %>
+                        <%= locals.currentUser.last_name %>
+                </h1>
+                <h2 style="text-align: center;">
+                    <%= locals.currentUser.username %>
+                </h2>
+
+            </div>
+
+            <div>
+                Member: <%= locals.currentUser.member ? "yes" : "no" %>
+            </div>
+            <div>
+                Admin: <%= locals.currentUser.admin ? "yes" : "no" %>
+            </div>
+        </div> -->
+
+            <div class="messages">
+                <div class="message-header">
+
+                    <h2>Messages</h2>
+                </div>
+                <div class="message-grid">
+
+                    <% locals.messages.forEach((message)=> { %>
+                        <div class="message-card">
+
+                            <h2>
+                                <%= message.title %>
+                            </h2>
+                            <p>
+                                <%= message.text %>
+                            </p>
+                            <p>
+                                <%= message.added.toLocaleString("en-US") %>
+                            </p>
+                        </div>
+                        <%})%>
+                </div>
+            </div>
+        </main>
+        <%- include("../partials/footer"); %>
