@@ -11,28 +11,26 @@
                 </ul>
             </div>
 
-            <% if(locals.currentUser) { %>
-                <a class="btn btn-primary" href="/create-message">Create Message</a>
-                <% } %>
 
-                    <div class="message-grid">
-                        <% locals.messages.forEach((message)=> { %>
-                            <div class="message-card">
-                                <p>
-                                    <%= message.member ? message.username : "******" %>
-                                </p>
-                                <h2>
-                                    <%= message.title %>
-                                </h2>
-                                <p>
-                                    <%= message.text %>
-                                </p>
-                                <p>
-                                    <%= message.member ? message.added.toLocaleString('en-US') : '******' %>
-                                </p>
-                            </div>
 
-                            <%})%>
+            <div class="message-grid">
+                <% locals.messages.forEach((message)=> { %>
+                    <div class="message-card">
+                        <p>
+                            <%= message.member ? message.username : "******" %>
+                        </p>
+                        <h2>
+                            <%= message.title %>
+                        </h2>
+                        <p>
+                            <%= message.text %>
+                        </p>
+                        <p>
+                            <%= message.member ? message.added.toLocaleString('en-US') : '******' %>
+                        </p>
                     </div>
+
+                    <%})%>
+            </div>
         </main>
         <%- include("../partials/footer"); %>

@@ -34,7 +34,7 @@ export const postForm = [
 				});
 			});
 
-			res.redirect("/");
+			res.redirect("/log-in");
 		} catch (err) {
 			console.log(err);
 			return next(err);

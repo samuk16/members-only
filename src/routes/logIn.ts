@@ -9,7 +9,7 @@ logInRouter.post(
 	...postLogin,
 	passport.authenticate("local", {
 		successRedirect: "/",
-		failureRedirect: "/",
+		failureRedirect: "/log-in",
 	}),
 );
 export default logInRouter;

@@ -2,17 +2,10 @@ import type { Request, Response, NextFunction } from "express";
 import { validatorMessageForm } from "../validators/messageValidator";
 import { validationResult } from "express-validator";
 import { postMessage } from "../db/queries";
-import type { Session } from "express-session";
-import { error } from "node:console";
+import type { CustomSession } from "../types/session";
 
 export async function getMessage(req: Request, res: Response) {
 	res.render("pages/messageForm");
-}
-
-interface CustomSession extends Session {
-	passport: {
-		user: number;
-	};
 }
 
 export const postMessageF = [
