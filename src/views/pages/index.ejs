@@ -16,16 +16,16 @@
             <div class="message-grid">
                 <% locals.messages.forEach((message)=> { %>
                     <div class="message-card">
-                        <p>
+                        <p class="message-user">
                             <%= message.member ? message.username : "******" %>
                         </p>
-                        <h2>
+                        <h2 class="message-title">
                             <%= message.title %>
                         </h2>
                         <p>
                             <%= message.text %>
                         </p>
-                        <p>
+                        <p class="message-date">
                             <%= message.member ? message.added.toLocaleString('en-US') : '******' %>
                         </p>
                     </div>
