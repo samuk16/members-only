@@ -3,27 +3,6 @@
     <%- include("../partials/nav"); %>
         <main class="container-profile">
 
-            <!-- <div class="profile">
-
-            <div>
-                <h1>
-                    <%= locals.currentUser.first_name %>
-                        <%= locals.currentUser.last_name %>
-                </h1>
-                <h2 style="text-align: center;">
-                    <%= locals.currentUser.username %>
-                </h2>
-
-            </div>
-
-            <div>
-                Member: <%= locals.currentUser.member ? "yes" : "no" %>
-            </div>
-            <div>
-                Admin: <%= locals.currentUser.admin ? "yes" : "no" %>
-            </div>
-        </div> -->
-
             <div class="messages">
                 <div class="message-header">
 
@@ -37,10 +16,10 @@
                             <h2>
                                 <%= message.title %>
                             </h2>
-                            <p>
+                            <p style="color: #7c7c7c;">
                                 <%= message.text %>
                             </p>
-                            <p>
+                            <p class="message-date">
                                 <%= message.added.toLocaleString("en-US") %>
                             </p>
                         </div>
