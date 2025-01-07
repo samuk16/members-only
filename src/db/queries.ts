@@ -56,3 +56,10 @@ export async function becomeMember(id: number) {
 	);
 	return rows;
 }
+export async function becomeAdmin(id: number) {
+	const { rows } = await pool.query(
+		"UPDATE users SET admin = true WHERE id = $1",
+		[id],
+	);
+	return rows;
+}

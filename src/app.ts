@@ -18,6 +18,7 @@ import indexRouter from "./routes";
 import profileRouter from "./routes/profile";
 import memberRouter from "./routes/member";
 import { SESSION_SECRET, PORT } from "../src/config/config";
+import adminRouter from "./routes/admin";
 const app = express();
 
 const pgSession = connectPgSimple(session);
@@ -70,6 +71,7 @@ app.get("/protected-route", isAuth, (req, res) => {
 app.use("/create-message", messageRouter);
 app.use("/profile", profileRouter);
 app.use("/member", memberRouter);
+app.use("/admin", adminRouter);
 interface CustomError extends Error {
 	status?: number;
 }

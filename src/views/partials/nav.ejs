@@ -11,15 +11,19 @@
 
                 <div class=" container-badges">
                     <a href="/member">
-                        <div class="<%= locals.currentUser.member ? " badge badge-member"
-                            : "badge badge-member-inactive" %>
+                        <div class="<%= locals.currentUser.member ? " badge badge-member "
+                            : " badge badge-member-inactive " %>
                             ">Member
                         </div>
                     </a>
 
-                    <div class="<%= locals.currentUser.admin ? " badge badge-admin" : "badge badge-admin-inactive" %>
-                        ">Admin
-                    </div>
+                    <a href="/admin">
+
+                        <div class="<%= locals.currentUser.admin ? " badge badge-admin" : "badge badge-admin-inactive"
+                            %>
+                            ">Admin
+                        </div>
+                    </a>
 
                 </div>
                 <a href="/profile" class="btn btn-secondary">

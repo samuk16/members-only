@@ -1,0 +1,30 @@
+<%- include("../partials/head") %>
+    <%- include("../partials/nav"); %>
+        <main>
+            <div class="form-container">
+                <div>
+                    <ul>
+                        <% if (locals.errors) { %>
+                            <% locals.errors.forEach((error)=> { %>
+                                <li>
+                                    <%= error.msg %>
+                                </li>
+                                <%})%>
+                                    <%} %>
+                    </ul>
+                </div>
+                <form action="/admin" method="POST">
+                    <h1>Become a Admin</h1>
+                    <div class="form-group">
+
+                        <label for="code">Code</label>
+                        <input type="text" id="code" placeholder="Code" name="code">
+
+                    </div>
+
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </main>
+        <%- include("../partials/footer"); %>
