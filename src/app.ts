@@ -2,8 +2,6 @@ import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import signUpRouter from "./routes/signUp";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 import passport from "../src/config/passportjs";
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
@@ -19,8 +17,9 @@ import { SESSION_SECRET, PORT } from "../src/config/config";
 import adminRouter from "./routes/admin";
 import methodOverride from "method-override";
 import { deleteMessageF } from "./controllers/deleteMessageController";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
-
 const pgSession = connectPgSimple(session);
 
 app.set("view engine", "ejs");
