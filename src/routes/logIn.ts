@@ -9,6 +9,7 @@ logInRouter.post(
 	...postLogin,
 	passport.authenticate("local", {
 		successRedirect: "/",
+		failureMessage: "Invalid username or password. Please try again.",
 		failureRedirect: "/log-in",
 	}),
 );

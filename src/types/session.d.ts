@@ -4,4 +4,5 @@ export interface CustomSession extends Session {
 	passport: {
 		user: number;
 	};
+	messages: string[];
 }

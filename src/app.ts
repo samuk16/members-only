@@ -6,14 +6,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import passport from "../src/config/passportjs";
 import session from "express-session";
-import type { Session } from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import { pool } from "./db/pool";
 import type { Request, Response, NextFunction } from "express";
 import logInRouter from "./routes/logIn";
 import logOutRouter from "./routes/logOut";
 import messageRouter from "./routes/message";
-import { isAuth } from "./middlewares/auth";
 import indexRouter from "./routes";
 import profileRouter from "./routes/profile";
 import memberRouter from "./routes/member";
@@ -45,31 +43,12 @@ app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
 	next();
 });
-interface CustomSession extends Session {
-	passport: {
-		user: number;
-	};
-}
-
-app.use((req, res, next) => {
-	console.log(req.session);
-	// console.log((req.session as CustomSession).passport);
-	// console.log((req.session as CustomSession).passport.user);
-	next();
-});
 
 app.get("/", indexRouter);
 
 app.use("/sign-up", signUpRouter);
 app.use("/log-in", logInRouter);
 app.use("/log-out", logOutRouter);
-app.get("/protected-route", isAuth, (req, res) => {
-	if (req.isAuthenticated()) {
-		res.render("pages/test");
-	} else {
-		res.render("pages/test2");
-	}
-});
 app.use("/create-message", messageRouter);
 app.use("/profile", profileRouter);
 app.use("/member", memberRouter);
@@ -79,14 +58,18 @@ interface CustomError extends Error {
 	status?: number;
 }
 
+app.get("*", (req: Request, res: Response, next: NextFunction) => {
+	const error: CustomError = new Error("Page not found!");
+	error.status = 404;
+	next(error);
+});
+
 app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
-	console.log(err);
 	res
 		.status(err.status || 500)
 		.render("pages/error", { error: err.message, status: err.status || 500 });
 });
 
-// const PORT = PORT || 3000;
-app.listen(PORT || 3000, () => {
+app.listen(PORT || 8000, () => {
 	console.log(`Server running on port ${PORT}`);
 });

@@ -1,7 +1,6 @@
 import { Client } from "pg";
 import { argv } from "node:process";
 
-// const date = new Date();
 const SQL2T = `
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -42,11 +41,6 @@ async function main() {
 		// await client.query(SQL3);
 		// await client.query(SQL);
 		// await client.query(SQL2);
-		// await client.query(SQL4);
-		// await client.query(insertQuery, [date]);
-		// await client.query(insertQuery);
-		// await client.query(insertQuery3);
-		// await client.query(insertQuery2);
 		console.log("done");
 	} catch (err) {
 		console.log(err);

@@ -4,7 +4,6 @@ export function isAuth(req: Request, res: Response, next: NextFunction) {
 	if (req.isAuthenticated()) {
 		next();
 	} else {
-		// res.redirect("/log-in");
 		const err: CustomError = new Error("Not authenticated");
 		err.status = 401;
 		next(err);
