@@ -16,9 +16,21 @@
             <div class="message-grid">
                 <% locals.messages.forEach((message)=> { %>
                     <div class="message-card">
-                        <p class="message-user">
-                            <%= locals.currentUser.member ? message.username : "******" %>
-                        </p>
+                        <div class="message-header">
+
+                            <p class="message-user">
+                                <%= locals.currentUser.member ? message.username : "******" %>
+                            </p>
+                            <% if(locals.currentUser.admin) { %>
+
+                                <form action="/message/<%= message.id %>?_method=DELETE" method="POST"
+                                    style="display: inline;">
+                                    <button class="btn-icon btn-secondary" type="submit">
+                                        <img src="/svg/trash.svg" alt="">
+                                    </button>
+                                </form>
+                                <% } %>
+                        </div>
                         <h2 class="message-title">
                             <%= message.title %>
                         </h2>

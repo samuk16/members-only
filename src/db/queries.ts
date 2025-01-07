@@ -63,3 +63,8 @@ export async function becomeAdmin(id: number) {
 	);
 	return rows;
 }
+
+export async function deleteMessage(id: number) {
+	const { rows } = await pool.query("DELETE FROM records WHERE id = $1", [id]);
+	return rows;
+}

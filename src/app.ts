@@ -19,6 +19,8 @@ import profileRouter from "./routes/profile";
 import memberRouter from "./routes/member";
 import { SESSION_SECRET, PORT } from "../src/config/config";
 import adminRouter from "./routes/admin";
+import methodOverride from "method-override";
+import { deleteMessageF } from "./controllers/deleteMessageController";
 const app = express();
 
 const pgSession = connectPgSimple(session);
@@ -27,6 +29,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 app.use(
 	session({
@@ -38,7 +41,6 @@ app.use(
 	}),
 );
 app.use(passport.session());
-
 app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
 	next();
@@ -72,6 +74,7 @@ app.use("/create-message", messageRouter);
 app.use("/profile", profileRouter);
 app.use("/member", memberRouter);
 app.use("/admin", adminRouter);
+app.delete("/message/:id", deleteMessageF);
 interface CustomError extends Error {
 	status?: number;
 }

@@ -95,23 +95,6 @@ input:focus {
   border-color: var(--accent);
 }
 
-button {
-  width: 100%;
-  padding: 0.75rem;
-  background: var(--accent);
-  color: var(--foreground);
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-/* Message Cards */
 .message-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -206,7 +189,19 @@ button:hover {
   height: 2.2rem;
   min-width: 2.2rem;
 }
-
+.btn-icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 0.5rem 1rem; */
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  height: 2.2rem;
+  min-width: 2.2rem;
+}
 /* Primary button */
 .btn-primary {
   background: var(--foreground);
@@ -270,6 +265,9 @@ button:hover {
 }
 
 .message-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   border-bottom:1px solid var(--border);
 }
 
